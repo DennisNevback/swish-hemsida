@@ -1,11 +1,15 @@
 const headerContent = `
-<h1>DevOps</h1>
 <nav>
   <ul>
-    <li><a href="/">Hem</a></li>
-    <li><a href="/">Funktion 1</a></li>
-    <li><a href="/">Funktion 2</a></li>
-    <li><a href="/">Funktion 3</a></li>
+    <div class="loggaNav">
+    <img src="../images/loggaHeader.png">
+    <h1>DevOps</h1>
+    </div>
+    <li><a href="/">Services</a></li>
+    <li><a href="/">Our Team</a></li>
+    <li><a href="/">Clients</a></li>
+    <li><a href="/">About us</a></li>
+    <li><a href="/">Contact us</a></li>
   </ul>
 </nav>
 `;
