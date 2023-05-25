@@ -48,12 +48,29 @@ nav ul {
 
 }
 
+
+nav ul li::after {
+    content: "";
+    height: 3px;
+    width: 0%;
+    background: #f9d36b;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    transition: 0.5s;
+}
+
+nav ul li:hover::after {
+    width: 100%;
+}
+
 li {
     list-style-type: none;
     margin: 0.5rem;
     justify-content: space-evenly;
     text-decoration: none;
-    color: black;
+    font-size: 1.2rem;
+    position: relative;
 }
 
 .gridContainer {
