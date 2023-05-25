@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mainPageContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+}
+
+.slogan {
+    text-align: center;
+    font-size: 6rem;
+    margin-top: -35%;
+    z-index: 3;
+}
+
+.mainPageLogo {
+    justify-content: center;
+    scale: 60%;
+    margin-top: -12%;
+}
+
+.learnMoreButton {
+    display: flex;
+    background-color: black;
+    color: #ffffff;
+    font-size: 3rem;
+    margin-top: 13%;
+    padding: 1rem 2rem;
+}
+
+.learnMoreContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.introText {
+    font-size: 1.3rem;
+    margin-top: 5%;
+    color: #ffffff;
+    width: 80%;
+}
+
+.rectangle {
+    display: flex;
+    align-self: flex-end;
+    align-items: top;
+    text-align: center;
+    justify-content: center;
+    height: 200px;
+    width: 600px;
+    background-color: #000000;
+    border-radius: 35% 0% 0% 35% / 100% 42% 0% 100%;
+}
