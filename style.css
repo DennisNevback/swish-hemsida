@@ -48,12 +48,12 @@ nav ul {
 
 }
 
-li {
+nav li {
     list-style-type: none;
     margin: 0.5rem;
     justify-content: space-evenly;
     text-decoration: none;
-    color: black;
+    font-size: 1.2rem;
 }
 
 .gridContainer {
