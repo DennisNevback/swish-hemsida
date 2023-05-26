@@ -18,18 +18,44 @@
   text-align: center;
 }
 
+.col-2 {
+  flex-grow: 2;
+}
+
 .footer div h3 {
   font-weight: 300;
   margin-bottom: 30px;
   letter-spacing: 1px;
 }
 
-.col-2 a {
+.col-1 a {
   display: block;
   text-decoration: none;
   color: #efefef;
   margin-bottom: 10px;
 
+}
+
+form input {
+  width: 400px;
+  height: 45px;
+  border-radius: 4px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  outline: none;
+  border: none;
+
+}
+
+form button {
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  border-radius: 30px;
+  padding: 10px 30px;
+  font-size: 15px;
+  cursor: pointer;
 }
 
 .social-icons {
