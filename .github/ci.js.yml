@@ -5,9 +5,9 @@ name: Node.js CI
 
 on:
 push:
-branches: ['CICD']
+branches: ['CICD-vite']
 pull_request:
-branches: ['CICD']
+branches: ['CICD-vite']
 
 jobs:
 e2e:
