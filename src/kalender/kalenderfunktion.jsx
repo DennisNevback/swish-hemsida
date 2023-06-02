@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Calendar() {
+function KalenderFunktion() {
     // Exempel på en funktion för att visa kalendervyn
     function showCalendar() {
         // Kod för att visa kalendervyn
@@ -18,4 +18,4 @@ function Calendar() {
     );
 }
 
-export default Calendar;
+export default KalenderFunktion;

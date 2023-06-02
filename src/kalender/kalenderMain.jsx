@@ -8,15 +8,15 @@ function KalenderMain() {
                 <h1>CI/CD Kalender</h1>
             </header>
             <main>
-                <div id="welcome-section">
+                <div className="welcome-section">
                     <h2>Välkommen till CI/CD Kalender</h2>
                     {/* Här kan du lägga till välkomstsegmentet */}
                 </div>
-                <div id="todo-list">
+                <div className="todo-list">
                     <h2>Att göra</h2>
                     {/* Här kan du lägga till listan med todos */}
                 </div>
-                <div id="calendar">
+                <div className="calendar">
                     <h2>Kalender</h2>
                     {/* Här kan du lägga till kalendervyn */}
                 </div>
