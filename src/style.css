@@ -16,8 +16,9 @@ header {
     padding: 1rem;
 }
 
-nav{
+nav {
     width: 100%;
+    padding: 0 2%;
 }
 
 .loggaNav {
@@ -31,7 +32,7 @@ nav{
 }
 
 .loggaNav h1 {
-        font-size: 2rem;
+    font-size: 2rem;
 }
 
 main {
