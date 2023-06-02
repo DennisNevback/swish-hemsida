@@ -1,8 +1,7 @@
 import React from 'react';
-import '../path/to/style.css';
-import '../path/to/MainPage.css';
+import './mainpage.css'
 
-function App() {
+function Mainpage() {
     return (
         <>
             <header></header>
@@ -23,4 +22,4 @@ function App() {
     );
 }
 
-export default App;
+export default Mainpage;
