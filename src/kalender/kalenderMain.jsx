@@ -1,31 +1,75 @@
-import React from 'react';
-import './KalenderStyle.css';
+import React, { useState } from 'react';
+import './kalenderStyle.css';
 
-function KalenderMain() {
+const Calendar = () => {
+    const [date, setDate] = useState(new Date());
+
+    const handlePrevMonth = () => {
+        setDate(prevDate => {
+            let year = prevDate.getFullYear();
+            let month = prevDate.getMonth() - 1;
+            if (month < 0) {
+                month = 11; // December
+                year -= 1;
+            }
+            return new Date(year, month, 1);
+        });
+    };
+
+    const handleNextMonth = () => {
+        setDate(prevDate => {
+            let year = prevDate.getFullYear();
+            let month = prevDate.getMonth() + 1;
+            if (month > 11) {
+                month = 0; // January
+                year += 1;
+            }
+            return new Date(year, month, 1);
+        });
+    };
+
+
+    const monthNames = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+
+    const currentMonth = monthNames[date.getMonth()];
+    const currentYear = date.getFullYear();
+
+    const daysInMonth = new Date(currentYear, date.getMonth() + 1, 0).getDate();
+    const firstDayOfMonth = new Date(currentYear, date.getMonth(), 1).getDay();
+
+    const days = [];
+    for (let i = 0; i < firstDayOfMonth; i++) {
+        days.push(<div className="empty-day" key={`empty-${i}`}></div>);
+    }
+    for (let i = 1; i <= daysInMonth; i++) {
+        days.push(<div className="day" key={`day-${i}`}>{i}</div>);
+    }
+
     return (
-        <div>
-            <header>
-                <h1>CI/CD Kalender</h1>
-            </header>
-            <main>
-                <div className="welcome-section">
-                    <h2>Välkommen till CI/CD Kalender</h2>
-                    {/* Här kan du lägga till välkomstsegmentet */}
-                </div>
-                <div className="todo-list">
-                    <h2>Att göra</h2>
-                    {/* Här kan du lägga till listan med todos */}
-                </div>
-                <div className="calendar">
-                    <h2>Kalender</h2>
-                    {/* Här kan du lägga till kalendervyn */}
-                </div>
-            </main>
-            <script src="todos.jsx"></script>
-            <script src="kalenderFunktion.jsx"></script>
-            <script src="today.jsx"></script>
+        <div className="calendar">
+            <div className="header">
+                <button onClick={handlePrevMonth}>&lt;</button>
+                <h2>{currentMonth} {currentYear}</h2>
+                <button onClick={handleNextMonth}>&gt;</button>
+            </div>
+            <div className="days">
+
+                <div className="day">Mon</div>
+                <div className="day">Tue</div>
+                <div className="day">Wed</div>
+                <div className="day">Thu</div>
+                <div className="day">Fri</div>
+                <div className="day">Sat</div>
+                <div className="day">Sun</div>
+            </div>
+            <div className="dates">
+                {days}
+            </div>
         </div>
     );
-}
+};
 
-export default KalenderMain;
+export default Calendar;
