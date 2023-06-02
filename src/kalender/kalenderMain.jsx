@@ -1,19 +1,31 @@
-// todos.js
-// Här kan du lägga till JavaScript-kod för att hantera todos
+import React from 'react';
+import './KalenderStyle.css';
 
-// Exempel på en funktion för att lägga till en todo
-function addTodo() {
-    // Kod för att hantera tillägg av en todo
+function KalenderMain() {
+    return (
+        <div>
+            <header>
+                <h1>CI/CD Kalender</h1>
+            </header>
+            <main>
+                <div id="welcome-section">
+                    <h2>Välkommen till CI/CD Kalender</h2>
+                    {/* Här kan du lägga till välkomstsegmentet */}
+                </div>
+                <div id="todo-list">
+                    <h2>Att göra</h2>
+                    {/* Här kan du lägga till listan med todos */}
+                </div>
+                <div id="calendar">
+                    <h2>Kalender</h2>
+                    {/* Här kan du lägga till kalendervyn */}
+                </div>
+            </main>
+            <script src="todos.jsx"></script>
+            <script src="kalenderFunktion.jsx"></script>
+            <script src="today.jsx"></script>
+        </div>
+    );
 }
 
-// Exempel på en funktion för att ta bort en todo
-function removeTodo() {
-    // Kod för att hantera borttagning av en todo
-}
-
-// Exempel på en funktion för att ändra en todo
-function updateTodo() {
-    // Kod för att hantera uppdatering av en todo
-}
-
-// Annan kod och funktioner för att hantera todos kan läggas till här
+export default KalenderMain;
