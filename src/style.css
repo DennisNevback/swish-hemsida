@@ -16,6 +16,8 @@ header {
     padding: 1rem;
 }
 
+
+
 nav {
     width: 100%;
     padding: 0 2%;
@@ -73,6 +75,12 @@ li {
     font-size: 1.2rem;
 }
 
+.menuItems {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
 a:link {
     text-decoration: none;
     color: black;
@@ -81,4 +89,70 @@ a:link {
 a:hover,
 a:visited {
     color: #000;
+}
+
+.icon {
+    display: none;
+}
+
+a :last-child {
+    color: black;
+}
+
+@media screen and (max-width: 810px) {
+    .menuNav {
+        flex-direction: column;
+        padding-bottom: 1rem;
+    }
+
+    ul {
+        overflow: hidden;
+        background-color: #ffffff;
+        position: relative;
+    }
+
+    /* Hide the links inside the navigation menu (except for logo/home) */
+    .menuItems {
+        display: none;
+    }
+
+    /* Style navigation menu links */
+    ul a {
+        color: white;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+        display: block;
+    }
+
+    /* Style the hamburger menu */
+    ul a.icon {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        margin-top: 1rem;
+        right: 0;
+        top: 0;
+        padding: 1rem;
+        font-size: 2rem;
+        opacity: 90%;
+        height: 100%;
+    }
+
+    /* Add a grey background color on mouse-over */
+    ul a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    /* Style the active link (or home/logo) */
+    .active {
+        background-color: #04AA6D;
+        color: white;
+    }
+
+    .icon {
+        display: block;
+    }
+
 }
