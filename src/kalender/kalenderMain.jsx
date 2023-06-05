@@ -3,7 +3,6 @@ import './kalenderStyle.css';
 
 const Calendar = () => {
     const [date, setDate] = useState(new Date());
-
     const handlePrevMonth = () => {
         setDate(prevDate => {
             let year = prevDate.getFullYear();
@@ -28,7 +27,10 @@ const Calendar = () => {
         });
     };
 
-
+    const dayNames = [
+        'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
+        'Sunday'
+    ];
     const monthNames = [
         'January', 'February', 'March', 'April', 'May', 'June',
         'July', 'August', 'September', 'October', 'November', 'December'
@@ -40,6 +42,13 @@ const Calendar = () => {
     const daysInMonth = new Date(currentYear, date.getMonth() + 1, 0).getDate();
     const firstDayOfMonth = new Date(currentYear, date.getMonth(), 1).getDay();
 
+    const hourNow = new Date().getHours();
+    const minuteNow = new Date().getMinutes();
+    const dayNow = new Date().getDay();
+    const dateNow = new Date().getDate();
+    const monthNow = new Date().getMonth() + 1;
+    const yearNow = new Date().getFullYear();
+
     const days = [];
     for (let i = 0; i < firstDayOfMonth; i++) {
         days.push(<div className="empty-day" key={`empty-${i}`}></div>);
@@ -49,24 +58,30 @@ const Calendar = () => {
     }
 
     return (
-        <div className="calendar">
-            <div className="header">
-                <button onClick={handlePrevMonth}>&lt;</button>
-                <h2>{currentMonth} {currentYear}</h2>
-                <button onClick={handleNextMonth}>&gt;</button>
+        <div className="calenderContainer">
+            <div className='calenderTodo'>
+                <h2>{dayNames[dayNow]}</h2> <br></br>
+                <h2>{dateNow}/{monthNames[monthNow]}/{yearNow}</h2>
+                <h2> {hourNow}:{minuteNow}</h2>
             </div>
-            <div className="days">
-
-                <div className="day">Mon</div>
-                <div className="day">Tue</div>
-                <div className="day">Wed</div>
-                <div className="day">Thu</div>
-                <div className="day">Fri</div>
-                <div className="day">Sat</div>
-                <div className="day">Sun</div>
-            </div>
-            <div className="dates">
-                {days}
+            <div className="calendar">
+                <div className="header">
+                    <button onClick={handlePrevMonth}>&lt;</button>
+                    <h2>{currentMonth} {currentYear}</h2>
+                    <button onClick={handleNextMonth}>&gt;</button>
+                </div>
+                <div className="days">
+                    <div className="dayWeek">Mon</div>
+                    <div className="dayWeek">Tue</div>
+                    <div className="dayWeek">Wed</div>
+                    <div className="dayWeek">Thu</div>
+                    <div className="dayWeek">Fri</div>
+                    <div className="dayWeek">Sat</div>
+                    <div className="dayWeek">Sun</div>
+                </div>
+                <div className="dates">
+                    {days}
+                </div>
             </div>
         </div>
     );

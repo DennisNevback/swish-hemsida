@@ -1,10 +1,25 @@
-.calendar {
+.calenderContainer {
+    display: flex;
     width: 100%;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    background-color: rgb(207, 220, 210);
+}
+
+.calendar {
+    width: 70%;
     height: 900px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    padding: 10px;
+    padding: 2% 10%;
     font-family: Arial, sans-serif;
+}
+
+.calenderTodo {
+    display: flex;
+    width: 20%;
+    height: 1000px;
+    background-color: rgb(19, 89, 47);
 }
 
 .header {
@@ -24,32 +39,48 @@
 .days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    margin-bottom: 10px;
+    background-color: white;
 }
 
-.day {
-    text-align: center;
-    font-weight: bold;
-}
 
 .dates {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    grid-gap: 5px;
+
 }
 
 .empty-day {
-    visibility: hidden;
+    font-size: 1.5rem;
+    border: 1px solid #000000;
+    cursor: pointer;
+    background-color: rgb(212, 212, 212);
+    height: 8rem;
+    padding: .3rem;
 }
 
 .day {
-    text-align: center;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    font-size: 1.5rem;
+    border: 1px solid #000000;
     cursor: pointer;
+    background-color: white;
+    height: 8rem;
+    padding: .3rem;
+}
+
+.dayWeek {
+    text-align: center;
+    font-size: 1.5rem;
+    border: 1px solid #000000;
+    cursor: pointer;
+    background-color: white;
+    height: 3rem;
+    padding: .3rem;
 }
 
 .day:hover {
     background-color: #f0f0f0;
+}
+
+h2 {
+    font-size: 2rem;
 }
