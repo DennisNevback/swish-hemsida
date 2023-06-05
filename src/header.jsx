@@ -6,17 +6,14 @@ import { useState } from 'react';
 
 function Header() {
 
-  var [x, setX] = useState(document.getElementsByClassName("menuItems"));
-
   function myFunction() {
-    setX = document.getElementsByClassName("menuItems");
+    var x = document.getElementsByClassName("menuItems");
     if (x[0].style.display === "none") {
       x[0].style.display = "block";
     } else {
       x[0].style.display = "none";
     }
   }
-
 
   return (
     <>
