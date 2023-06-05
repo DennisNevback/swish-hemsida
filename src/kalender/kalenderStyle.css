@@ -84,3 +84,11 @@
 h2 {
     font-size: 2rem;
 }
+
+.calenderTodo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1%;
+    color: rgb(235, 233, 233);
+}
