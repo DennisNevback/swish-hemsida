@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './kalenderStyle.css';
+import todo from "./todo.json"
 
 const Calendar = () => {
     const [date, setDate] = useState(new Date());
+    const [data, setData] = useState([]);
+
     const handlePrevMonth = () => {
         setDate(prevDate => {
             let year = prevDate.getFullYear();
@@ -37,6 +40,19 @@ const Calendar = () => {
         return obj[p];
     }
 
+    function jsonToNrOfTask(id) {
+        var data = todo;
+        for (var i = 0; i < data.length; i++) {
+            console.log(data.length);
+            console.log(id);
+            console.log(data[i].id);
+            if (data[i].id == id) {
+                return data[i].list.length;
+            }
+        }
+
+    }
+
     const dayNames = [
         'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
         'Sunday'
@@ -65,7 +81,10 @@ const Calendar = () => {
     }
     for (let i = 1; i <= daysInMonth; i++) {
         var dateFull = objToString({ i }) + objToString({ currentMonth }) + objToString({ currentYear });
-        days.push(<div className="day" key={`day-${i}`} id={dateFull}> {i}</div >);
+        days.push(<div className="day" key={`day-${i}`} id={dateFull}>
+            {i}
+            {jsonToNrOfTask(dateFull)}
+        </div >);
     }
 
     return (
