@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './kalenderStyle.css';
-import todo from "./todo.json"
+import todo from "./todo.json";
+import { addTodo } from "./todos.jsx";
 
 const Calendar = () => {
     const [date, setDate] = useState(new Date());
-    const [data, setData] = useState([]);
 
     const handlePrevMonth = () => {
         setDate(prevDate => {
@@ -43,9 +43,6 @@ const Calendar = () => {
     function jsonToNrOfTask(id) {
         var data = todo;
         for (var i = 0; i < data.length; i++) {
-            console.log(data.length);
-            console.log(id);
-            console.log(data[i].id);
             if (data[i].id == id) {
                 return data[i].list.length;
             }
@@ -76,6 +73,8 @@ const Calendar = () => {
     const yearNow = new Date().getFullYear();
 
     const days = [];
+
+
     for (let i = 0; i < firstDayOfMonth; i++) {
         days.push(<div className="empty-day" key={`empty-${i}`}></div>);
     }
@@ -84,8 +83,10 @@ const Calendar = () => {
         days.push(<div className="day" key={`day-${i}`} id={dateFull}>
             {i}
             {jsonToNrOfTask(dateFull)}
+            <button onClick={() => addTodo("29June2023", ["fiska", "städa", "Tvätta", "Stuff"])}>A</button>
         </div >);
     }
+    console.log(todo);
 
     return (
         <div className="calenderContainer">
