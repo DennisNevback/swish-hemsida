@@ -27,6 +27,16 @@ const Calendar = () => {
         });
     };
 
+    function objToString(obj) {
+        var str = '';
+        for (var p in obj) {
+            if (Object.prototype.hasOwnProperty.call(obj, p)) {
+                str += + obj[p];
+            }
+        }
+        return obj[p];
+    }
+
     const dayNames = [
         'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
         'Sunday'
@@ -54,7 +64,8 @@ const Calendar = () => {
         days.push(<div className="empty-day" key={`empty-${i}`}></div>);
     }
     for (let i = 1; i <= daysInMonth; i++) {
-        days.push(<div className="day" key={`day-${i}`}>{i}</div>);
+        var dateFull = objToString({ i }) + objToString({ currentMonth }) + objToString({ currentYear });
+        days.push(<div className="day" key={`day-${i}`} id={dateFull}> {i}</div >);
     }
 
     return (
