@@ -6,6 +6,7 @@ const Calendar = () => {
     const [date, setDate] = useState(new Date());
     const [selectedDate, setSelectedDate] = useState(null);
     const [tasks, setTasks] = useState([]);
+    const [taskInput, setTaskInput] = useState("");
 
     const handlePrevMonth = () => {
         setDate(prevDate => {
@@ -42,6 +43,24 @@ const Calendar = () => {
     const getTasksForDate = (date) => {
         const task = tasks.find(task => task.date === date);
         return task ? task.tasks : [];
+    };
+
+    const addTask = () => {
+        if (taskInput.trim() !== "" && selectedDate) {
+            const dateFull = selectedDate;
+            const taskList = getTasksForDate(dateFull);
+            const updatedTaskList = [...taskList, taskInput];
+
+            const updatedTasks = tasks.map(task => {
+                if (task.date === dateFull) {
+                    return { date: dateFull, tasks: updatedTaskList };
+                }
+                return task;
+            });
+
+            setTasks(updatedTasks);
+            setTaskInput("");
+        }
     };
 
     const dayNames = [
@@ -91,7 +110,7 @@ const Calendar = () => {
 
     return (
         <div className="calendar-container">
-            <div className='calendar-todo'>
+            <div className="calendar-todo">
                 <h2>{dayNames[dayNow]}</h2> <br></br>
                 <h2>{dateNow}/{monthNames[monthNow]}/{yearNow}</h2>
                 <h2> {hourNow}:{minuteNow}</h2>
@@ -121,6 +140,14 @@ const Calendar = () => {
                             <li key={index}>{task}</li>
                         ))}
                     </ul>
+                    <div className="add-task">
+                        <input
+                            type="text"
+                            value={taskInput}
+                            onChange={e => setTaskInput(e.target.value)}
+                        />
+                        <button onClick={addTask}>Add Task</button>
+                    </div>
                 </div>
             )}
         </div>
