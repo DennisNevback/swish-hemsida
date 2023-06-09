@@ -4,9 +4,10 @@ import todo from "./todo.json";
 
 const Calendar = () => {
     const [date, setDate] = useState(new Date());
-    const [selectedDate, setSelectedDate] = useState(null);
+    const [selectedDate, setSelectedDate] = useState();
     const [tasks, setTasks] = useState([]);
     const [taskInput, setTaskInput] = useState("");
+
 
     const handlePrevMonth = () => {
         setDate(prevDate => {
@@ -34,10 +35,12 @@ const Calendar = () => {
 
     const handleDateClick = (day) => {
         setSelectedDate(day);
+        document.getElementById("addTasks").style.display = "None";
     };
 
     const addTodo = (date, taskList) => {
         setTasks(prevTasks => [...prevTasks, { date, tasks: taskList }]);
+        document.getElementById("addTasks").style.display = "inline-block";
     };
 
     const getTasksForDate = (date) => {
@@ -103,7 +106,7 @@ const Calendar = () => {
             >
                 <div className="day-number">{i}</div>
                 <div className="task-count">{taskList.length}</div>
-                <button onClick={() => addTodo(dateFull, ["Task 1", "Task 2", "Task 3"])}>A</button>
+                <button onClick={() => addTodo(dateFull, [])}>A</button>
             </div>
         );
     }
@@ -140,7 +143,7 @@ const Calendar = () => {
                             <li key={index}>{task}</li>
                         ))}
                     </ul>
-                    <div className="add-task">
+                    <div className="add-task" id='addTasks'>
                         <input
                             type="text"
                             value={taskInput}
