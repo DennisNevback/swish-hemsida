@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './kalenderStyle.css';
 import todo from "./todo.json";
-import { addTodo } from "./todos.jsx";
+//import { addTodo } from "./todos.jsx";
 
 const Calendar = () => {
     const [date, setDate] = useState(new Date());
+    const [todoJSON, addTodoFunc] = useState(todo);
+
+    useEffect(() => { console.log("useEffect working") }, [todoJSON]);
 
     const handlePrevMonth = () => {
         setDate(prevDate => {
@@ -41,14 +44,32 @@ const Calendar = () => {
     }
 
     function jsonToNrOfTask(id) {
-        var data = todo;
+        var data = todoJSON;
         for (var i = 0; i < data.length; i++) {
             if (data[i].id == id) {
+
                 return data[i].list.length;
             }
         }
 
     }
+
+    function addTodo(id, array) {
+        console.log("Todo start!" + todoJSON);
+        var list = [];
+        for (var i = 0; i < array.length; i++) {
+            list.push(array[i]);
+        }
+        var testObj = {
+            id,
+            list
+        }
+        var test = todoJSON;
+        test.push(testObj);
+        console.log("Todo added!" + test);
+        addTodoFunc(test);
+    }
+
 
     const dayNames = [
         'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
@@ -86,7 +107,7 @@ const Calendar = () => {
             <button onClick={() => addTodo("29June2023", ["fiska", "städa", "Tvätta", "Stuff"])}>A</button>
         </div >);
     }
-    console.log(todo);
+    console.log(todoJSON);
 
     return (
         <div className="calenderContainer">
