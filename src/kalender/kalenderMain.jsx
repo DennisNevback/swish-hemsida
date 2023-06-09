@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './kalenderStyle.css';
 import todo from "./todo.json";
-import { addTodo } from "./todos.jsx";
 
 const Calendar = () => {
     const [date, setDate] = useState(new Date());
+    const [selectedDate, setSelectedDate] = useState(null);
+    const [tasks, setTasks] = useState([]);
 
     const handlePrevMonth = () => {
         setDate(prevDate => {
@@ -30,25 +31,18 @@ const Calendar = () => {
         });
     };
 
-    function objToString(obj) {
-        var str = '';
-        for (var p in obj) {
-            if (Object.prototype.hasOwnProperty.call(obj, p)) {
-                str += + obj[p];
-            }
-        }
-        return obj[p];
-    }
+    const handleDateClick = (day) => {
+        setSelectedDate(day);
+    };
 
-    function jsonToNrOfTask(id) {
-        var data = todo;
-        for (var i = 0; i < data.length; i++) {
-            if (data[i].id == id) {
-                return data[i].list.length;
-            }
-        }
+    const addTodo = (date, taskList) => {
+        setTasks(prevTasks => [...prevTasks, { date, tasks: taskList }]);
+    };
 
-    }
+    const getTasksForDate = (date) => {
+        const task = tasks.find(task => task.date === date);
+        return task ? task.tasks : [];
+    };
 
     const dayNames = [
         'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
@@ -74,23 +68,30 @@ const Calendar = () => {
 
     const days = [];
 
-
     for (let i = 0; i < firstDayOfMonth; i++) {
         days.push(<div className="empty-day" key={`empty-${i}`}></div>);
     }
+
     for (let i = 1; i <= daysInMonth; i++) {
-        var dateFull = objToString({ i }) + objToString({ currentMonth }) + objToString({ currentYear });
-        days.push(<div className="day" key={`day-${i}`} id={dateFull}>
-            {i}
-            {jsonToNrOfTask(dateFull)}
-            <button onClick={() => addTodo("29June2023", ["fiska", "städa", "Tvätta", "Stuff"])}>A</button>
-        </div >);
+        const dateFull = `${i}${currentMonth}${currentYear}`;
+        const taskList = getTasksForDate(dateFull);
+
+        days.push(
+            <div
+                className={`day ${selectedDate === dateFull ? 'selected' : ''}`}
+                key={`day-${i}`}
+                onClick={() => handleDateClick(dateFull)}
+            >
+                <div className="day-number">{i}</div>
+                <div className="task-count">{taskList.length}</div>
+                <button onClick={() => addTodo(dateFull, ["Task 1", "Task 2", "Task 3"])}>A</button>
+            </div>
+        );
     }
-    console.log(todo);
 
     return (
-        <div className="calenderContainer">
-            <div className='calenderTodo'>
+        <div className="calendar-container">
+            <div className='calendar-todo'>
                 <h2>{dayNames[dayNow]}</h2> <br></br>
                 <h2>{dateNow}/{monthNames[monthNow]}/{yearNow}</h2>
                 <h2> {hourNow}:{minuteNow}</h2>
@@ -110,10 +111,18 @@ const Calendar = () => {
                     <div className="dayWeek">Sat</div>
                     <div className="dayWeek">Sun</div>
                 </div>
-                <div className="dates">
-                    {days}
-                </div>
+                <div className="dates">{days}</div>
             </div>
+            {selectedDate && (
+                <div className="todo-list">
+                    <h3>{selectedDate}</h3>
+                    <ul>
+                        {getTasksForDate(selectedDate).map((task, index) => (
+                            <li key={index}>{task}</li>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </div>
     );
 };
