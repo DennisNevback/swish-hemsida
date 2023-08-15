@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './kalenderStyle.css';
+import todo from "./todo.json";
 
 const Calendar = () => {
     const [date, setDate] = useState(new Date());
+    const [selectedDate, setSelectedDate] = useState(null);
+    const [tasks, setTasks] = useState(todo);
+
     const handlePrevMonth = () => {
         setDate(prevDate => {
             let year = prevDate.getFullYear();
@@ -27,6 +31,37 @@ const Calendar = () => {
         });
     };
 
+    const handleDateClick = (day) => {
+        setSelectedDate(day);
+    };
+
+    const addTodo = (date) => {
+        let newTask = prompt("Please enter your task", "Do Dishes");
+        setTasks(prevTasks => {
+            let dateDoesNotExist = true
+            const updatedTasks = prevTasks.map(task => {
+                if (task.date == date) {
+                    dateDoesNotExist = false
+                    return { date, tasks: [...task.tasks, newTask] }
+                }
+                return tasks
+            })
+            if (dateDoesNotExist) {
+                updatedTasks.push({ date, tasks: [newTask] })
+            }
+            console.log(updatedTasks)
+            return updatedTasks
+        });
+    };
+    const addTasks = () => {
+
+    };
+
+    const getTasksForDate = (date) => {
+        const task = tasks.find(task => task.date === date);
+        return task ? task.tasks : [];
+    };
+
     const dayNames = [
         'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
         'Sunday'
@@ -46,23 +81,39 @@ const Calendar = () => {
     const minuteNow = new Date().getMinutes();
     const dayNow = new Date().getDay();
     const dateNow = new Date().getDate();
-    const monthNow = new Date().getMonth() + 1;
+    const monthNow = new Date().getMonth();
     const yearNow = new Date().getFullYear();
 
     const days = [];
+
     for (let i = 0; i < firstDayOfMonth; i++) {
         days.push(<div className="empty-day" key={`empty-${i}`}></div>);
     }
+
     for (let i = 1; i <= daysInMonth; i++) {
-        days.push(<div className="day" key={`day-${i}`}>{i}</div>);
+        const dateFull = `${i}${currentMonth}${currentYear}`;
+        const taskList = getTasksForDate(dateFull);
+
+        days.push(
+            <div
+                className={`day ${selectedDate === dateFull ? 'selected' : ''}`}
+                key={`day-${i}`}
+                onClick={() => handleDateClick(dateFull)}
+            >
+                <div className="day-number">{i}</div>
+                <div className="task-count">{taskList.length}</div>
+                <button onClick={() => addTodo(dateFull, ["Task 1", "Task 2", "Task 3"])}>A</button>
+            </div>
+        );
     }
 
     return (
-        <div className="calenderContainer">
-            <div className='calenderTodo'>
-                <h2>{dayNames[dayNow]}</h2> <br></br>
-                <h2>{dateNow}/{monthNames[monthNow]}/{yearNow}</h2>
-                <h2> {hourNow}:{minuteNow}</h2>
+        <div className="calendar-container">
+            <div className='calendar-todo'>
+                <br></br>
+                <h2> {hourNow}:{minuteNow}</h2><br></br>
+                <h2>{dayNames[dayNow]}</h2>
+                <h2>{dateNow} {monthNames[monthNow]} - {yearNow}</h2>
             </div>
             <div className="calendar">
                 <div className="header">
@@ -79,10 +130,18 @@ const Calendar = () => {
                     <div className="dayWeek">Sat</div>
                     <div className="dayWeek">Sun</div>
                 </div>
-                <div className="dates">
-                    {days}
-                </div>
+                <div className="dates">{days}</div>
             </div>
+            {selectedDate && (
+                <div className="todo-list">
+                    <h3>{selectedDate}</h3>
+                    <ul>
+                        {getTasksForDate(selectedDate).map((task, index) => (
+                            <li key={index}>{task}</li>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </div>
     );
 };
