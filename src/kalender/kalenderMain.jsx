@@ -54,14 +54,15 @@ const Calendar = () => {
         });
     };
 
-    const deleteTodo = (date, taskIndex) => {
+    const deleteTodo = (date, index) => {
         console.log(date)
         setTasks(prevTasks => {
             let updatedTasks = prevTasks.map(task => {
                 if (task.date == date) {
                     let updatedTaskList = [...task.tasks];
                     // updatedTaskList.splice(taskIndex, 1)
-                    updatedTaskList.pop()
+                    updatedTaskList.splice(index, 1)
+                    console.log(index)
                     return { date, tasks: updatedTaskList };
                 }
                 return task;
@@ -152,7 +153,7 @@ const Calendar = () => {
                     <ul>
                         {getTasksForDate(selectedDate).map((task, index) => (
                             <li key={index}>{task}
-                                <button onClick={() => deleteTodo(selectedDate)}>Delete</button>
+                                <button onClick={() => deleteTodo(selectedDate, index)}>Delete</button>
                             </li>
                         ))}
                     </ul>
