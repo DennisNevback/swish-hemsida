@@ -35,11 +35,23 @@ const Calendar = () => {
         setSelectedDate(day);
     };
 
-    const addTodo = (date, taskList) => {
-        let newTaskList = []
+    const addTodo = (date) => {
         let newTask = prompt("Please enter your task", "Do Dishes");
-        newTaskList.push(newTask)
-        setTasks(prevTasks => [...prevTasks, { date, tasks: newTaskList }]);
+        setTasks(prevTasks => {
+            let dateDoesNotExist = true
+            const updatedTasks = prevTasks.map(task => {
+                if (task.date == date) {
+                    dateDoesNotExist = false
+                    return { date, tasks: [...task.tasks, newTask] }
+                }
+                return tasks
+            })
+            if (dateDoesNotExist) {
+                updatedTasks.push({ date, tasks: [newTask] })
+            }
+            console.log(updatedTasks)
+            return updatedTasks
+        });
     };
     const addTasks = () => {
 
@@ -47,7 +59,6 @@ const Calendar = () => {
 
     const getTasksForDate = (date) => {
         const task = tasks.find(task => task.date === date);
-        console.log(tasks)
         return task ? task.tasks : [];
     };
 
