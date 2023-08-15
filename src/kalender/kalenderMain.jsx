@@ -161,6 +161,5 @@ const Calendar = () => {
             </div>
         );
     };
-}
 
-export default Calendar;
+    export default Calendar;
