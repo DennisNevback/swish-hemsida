@@ -5,7 +5,7 @@ import todo from "./todo.json";
 const Calendar = () => {
     const [date, setDate] = useState(new Date());
     const [selectedDate, setSelectedDate] = useState(null);
-    const [tasks, setTasks] = useState([]);
+    const [tasks, setTasks] = useState(todo);
 
     const handlePrevMonth = () => {
         setDate(prevDate => {
@@ -41,6 +41,7 @@ const Calendar = () => {
 
     const getTasksForDate = (date) => {
         const task = tasks.find(task => task.date === date);
+        console.log(tasks)
         return task ? task.tasks : [];
     };
 
