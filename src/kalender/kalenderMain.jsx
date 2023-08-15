@@ -36,7 +36,13 @@ const Calendar = () => {
     };
 
     const addTodo = (date, taskList) => {
-        setTasks(prevTasks => [...prevTasks, { date, tasks: taskList }]);
+        let newTaskList = []
+        let newTask = prompt("Please enter your task", "Do Dishes");
+        newTaskList.push(newTask)
+        setTasks(prevTasks => [...prevTasks, { date, tasks: newTaskList }]);
+    };
+    const addTasks = () => {
+
     };
 
     const getTasksForDate = (date) => {
@@ -64,7 +70,7 @@ const Calendar = () => {
     const minuteNow = new Date().getMinutes();
     const dayNow = new Date().getDay();
     const dateNow = new Date().getDate();
-    const monthNow = new Date().getMonth() + 1;
+    const monthNow = new Date().getMonth();
     const yearNow = new Date().getFullYear();
 
     const days = [];
@@ -93,9 +99,10 @@ const Calendar = () => {
     return (
         <div className="calendar-container">
             <div className='calendar-todo'>
-                <h2>{dayNames[dayNow]}</h2> <br></br>
-                <h2>{dateNow}/{monthNames[monthNow]}/{yearNow}</h2>
-                <h2> {hourNow}:{minuteNow}</h2>
+                <br></br>
+                <h2> {hourNow}:{minuteNow}</h2><br></br>
+                <h2>{dayNames[dayNow]}</h2>
+                <h2>{dateNow} {monthNames[monthNow]} - {yearNow}</h2>
             </div>
             <div className="calendar">
                 <div className="header">
