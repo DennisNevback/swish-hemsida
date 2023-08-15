@@ -71,6 +71,24 @@ const Calendar = () => {
         });
     };
 
+    const changeTodo = (date, index, task) => {
+        let newTask = prompt("Please enter your task", task);
+        console.log(date)
+        setTasks(prevTasks => {
+            let updatedTasks = prevTasks.map(task => {
+                if (task.date == date) {
+                    let updatedTaskList = [...task.tasks];
+                    // updatedTaskList.splice(taskIndex, 1)
+                    updatedTaskList.splice(index, 1, newTask)
+                    console.log(index)
+                    return { date, tasks: updatedTaskList };
+                }
+                return task;
+            });
+            return updatedTasks;
+        });
+    };
+
     const getTasksForDate = (date) => {
         const task = tasks.find(task => task.date === date);
         return task ? task.tasks : [];
@@ -117,7 +135,6 @@ const Calendar = () => {
                 <div className="day-number">{i}</div>
                 <div className="task-count">{taskList.length}</div>
                 <button onClick={() => addTodo(dateFull)}>Add Task</button>
-                <button onClick={() => deleteTodo(dateFull)}>Delete</button>
             </div>
         );
     }
@@ -154,6 +171,7 @@ const Calendar = () => {
                         {getTasksForDate(selectedDate).map((task, index) => (
                             <li key={index}>{task}
                                 <button onClick={() => deleteTodo(selectedDate, index)}>Delete</button>
+                                <button onClick={() => changeTodo(selectedDate, index, task)}>Edit</button>
                             </li>
                         ))}
                     </ul>
