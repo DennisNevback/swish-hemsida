@@ -6,7 +6,6 @@ import React, { useState } from 'react';
 // Exempel på en funktion för att lägga till en todo
 
 
-
 export function addTodo(id, array) {
     var list = [];
     for (var i = 0; i < array.length; i++) {
@@ -32,4 +31,4 @@ function updateTodo() {
     // Kod för att hantera uppdatering av en todo
 }
 
-// Annan kod och funktioner för att hantera todos kan läggas till här
+    // Annan kod och funktioner för att hantera todos kan läggas till här
