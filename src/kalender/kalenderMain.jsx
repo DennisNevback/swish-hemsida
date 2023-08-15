@@ -115,7 +115,7 @@ const Calendar = () => {
             >
                 <div className="day-number">{i}</div>
                 <div className="task-count">{taskList.length}</div>
-                <button onClick={() => addTodo(dateFull)}>A</button>
+                <button onClick={() => addTodo(dateFull)}>Add Task</button>
                 <button onClick={() => deleteTodo(dateFull)}>Delete</button>
             </div>
         );
@@ -151,7 +151,9 @@ const Calendar = () => {
                     <h3>{selectedDate}</h3>
                     <ul>
                         {getTasksForDate(selectedDate).map((task, index) => (
-                            <li key={index}>{task} </li>
+                            <li key={index}>{task}
+                                <button onClick={() => deleteTodo(selectedDate)}>Delete</button>
+                            </li>
                         ))}
                     </ul>
                 </div>
