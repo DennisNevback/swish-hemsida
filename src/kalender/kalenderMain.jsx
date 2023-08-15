@@ -44,7 +44,7 @@ const Calendar = () => {
                     dateDoesNotExist = false
                     return { date, tasks: [...task.tasks, newTask] }
                 }
-                return tasks
+                return task
             })
             if (dateDoesNotExist) {
                 updatedTasks.push({ date, tasks: [newTask] })
@@ -53,8 +53,21 @@ const Calendar = () => {
             return updatedTasks
         });
     };
-    const addTasks = () => {
 
+    const deleteTodo = (date, taskIndex) => {
+        console.log(date)
+        setTasks(prevTasks => {
+            let updatedTasks = prevTasks.map(task => {
+                if (task.date == date) {
+                    let updatedTaskList = [...task.tasks];
+                    // updatedTaskList.splice(taskIndex, 1)
+                    updatedTaskList.pop()
+                    return { date, tasks: updatedTaskList };
+                }
+                return task;
+            });
+            return updatedTasks;
+        });
     };
 
     const getTasksForDate = (date) => {
@@ -102,7 +115,8 @@ const Calendar = () => {
             >
                 <div className="day-number">{i}</div>
                 <div className="task-count">{taskList.length}</div>
-                <button onClick={() => addTodo(dateFull, ["Task 1", "Task 2", "Task 3"])}>A</button>
+                <button onClick={() => addTodo(dateFull)}>A</button>
+                <button onClick={() => deleteTodo(dateFull)}>Delete</button>
             </div>
         );
     }
@@ -137,7 +151,7 @@ const Calendar = () => {
                     <h3>{selectedDate}</h3>
                     <ul>
                         {getTasksForDate(selectedDate).map((task, index) => (
-                            <li key={index}>{task}</li>
+                            <li key={index}>{task} </li>
                         ))}
                     </ul>
                 </div>
