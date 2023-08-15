@@ -44,7 +44,7 @@ const Calendar = () => {
                     dateDoesNotExist = false
                     return { date, tasks: [...task.tasks, newTask] }
                 }
-                return tasks
+                return task
             })
             if (dateDoesNotExist) {
                 updatedTasks.push({ date, tasks: [newTask] })
