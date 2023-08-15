@@ -33,6 +33,7 @@ const Calendar = () => {
         });
     };
 
+<<<<<<< HEAD
     function objToString(obj) {
         var str = '';
         for (var p in obj) {
@@ -42,6 +43,19 @@ const Calendar = () => {
         }
         return obj[p];
     }
+=======
+    const handleDateClick = (day) => {
+        setSelectedDate(day);
+    };
+
+    const addTodo = (date, taskList) => {
+        let newTaskList = []
+        let newTask = prompt("Please enter your task", "Do Dishes");
+        newTaskList.push(newTask)
+        setTasks(prevTasks => [...prevTasks, { date, tasks: newTaskList }]);
+    };
+    const addTasks = () => {
+>>>>>>> parent of e641c34 (Fixed add task)
 
     function jsonToNrOfTask(id) {
         var data = todoJSON;
@@ -70,6 +84,14 @@ const Calendar = () => {
         addTodoFunc(test);
     }
 
+<<<<<<< HEAD
+=======
+    const getTasksForDate = (date) => {
+        const task = tasks.find(task => task.date === date);
+        console.log(tasks)
+        return task ? task.tasks : [];
+    };
+>>>>>>> parent of e641c34 (Fixed add task)
 
     const dayNames = [
         'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
