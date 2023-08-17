@@ -44,7 +44,7 @@ const Calendar = () => {
                     dateDoesNotExist = false
                     return { date, tasks: [...task.tasks, newTask] }
                 }
-                return tasks
+                return task
             })
             if (dateDoesNotExist) {
                 updatedTasks.push({ date, tasks: [newTask] })
@@ -53,8 +53,40 @@ const Calendar = () => {
             return updatedTasks
         });
     };
-    const addTasks = () => {
 
+    const deleteTodo = (date, index) => {
+        console.log(date)
+        setTasks(prevTasks => {
+            let updatedTasks = prevTasks.map(task => {
+                if (task.date == date) {
+                    let updatedTaskList = [...task.tasks];
+                    // updatedTaskList.splice(taskIndex, 1)
+                    updatedTaskList.splice(index, 1)
+                    console.log(index)
+                    return { date, tasks: updatedTaskList };
+                }
+                return task;
+            });
+            return updatedTasks;
+        });
+    };
+
+    const changeTodo = (date, index, task) => {
+        let newTask = prompt("Please enter your task", task);
+        console.log(date)
+        setTasks(prevTasks => {
+            let updatedTasks = prevTasks.map(task => {
+                if (task.date == date) {
+                    let updatedTaskList = [...task.tasks];
+                    // updatedTaskList.splice(taskIndex, 1)
+                    updatedTaskList.splice(index, 1, newTask)
+                    console.log(index)
+                    return { date, tasks: updatedTaskList };
+                }
+                return task;
+            });
+            return updatedTasks;
+        });
     };
 
     const getTasksForDate = (date) => {
@@ -102,7 +134,7 @@ const Calendar = () => {
             >
                 <div className="day-number">{i}</div>
                 <div className="task-count">{taskList.length}</div>
-                <button onClick={() => addTodo(dateFull, ["Task 1", "Task 2", "Task 3"])}>A</button>
+                <button onClick={() => addTodo(dateFull)}>Add Task</button>
             </div>
         );
     }
@@ -137,7 +169,10 @@ const Calendar = () => {
                     <h3>{selectedDate}</h3>
                     <ul>
                         {getTasksForDate(selectedDate).map((task, index) => (
-                            <li key={index}>{task}</li>
+                            <li key={index}>{task}
+                                <button onClick={() => deleteTodo(selectedDate, index)}>Delete</button>
+                                <button onClick={() => changeTodo(selectedDate, index, task)}>Edit</button>
+                            </li>
                         ))}
                     </ul>
                 </div>
