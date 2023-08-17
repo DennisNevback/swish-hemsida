@@ -49,7 +49,7 @@ const Calendar = () => {
             if (dateDoesNotExist) {
                 updatedTasks.push({ date, tasks: [newTask] })
             }
-            console.log(updatedTasks)
+
             return updatedTasks
         });
     };
@@ -60,7 +60,6 @@ const Calendar = () => {
                 if (task.date == date) {
                     let updatedTaskList = [...task.tasks];
                     updatedTaskList.splice(index, 1)
-                    console.log(index)
                     return { date, tasks: updatedTaskList };
                 }
                 return task;
