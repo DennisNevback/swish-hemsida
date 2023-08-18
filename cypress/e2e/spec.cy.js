@@ -36,19 +36,31 @@ describe('template spec', () => {
   })
  it('Edit task', () => {
   cy.window().then(($win) => {
-    const promptStub = cy.stub($win, 'prompt');
+    const promptStub = cy.stub($win, 'prompt')
+    
+    cy.get('.day').first().contains('Add Task').click()
+    promptStub.onCall(0).returns('Dansa')
+    cy.get('.day').first().contains('Add Task').click()
+    promptStub.onCall(1).returns('Dansa')
+    cy.get('.day').last().click()
+    cy.get('.day').last().contains('Add Task').click()
+    promptStub.onCall(2).returns('Dansa')
+    cy.get('.day').last().contains('Add Task').click()
+    promptStub.onCall(3).returns('Dansa')
 
-    cy.get('.day').first().contains('Add Task').click();
-    cy.get('.day').first().contains('Add Task').click();
-    cy.get('.day').last().contains('Add Task').click();
-    cy.get('.day').last().contains('Add Task').click();
-    cy.get('.day').first().click();
+    cy.get('.day').first().click()
 
-    cy.get('.todo-list ul li').first().contains('Edit').click();
-    promptStub.onFirstCall().returns('Dansa'); // First edit
+    promptStub.onCall(4).returns('Diska')
+    cy.get('.todo-list ul li').first().contains('Edit').click()
+    cy.wait(100)
+    cy.get('.todo-list ul li').first().contains('Diska').should('exist')
+    
+    cy.get('.day').last().click()
 
-    cy.get('.todo-list ul li').last().contains('Edit').click();
-    promptStub.onSecondCall().returns('Göra mat'); // Second edit
+    promptStub.onCall(5).returns('Göra mat')
+    cy.get('.todo-list ul li').last().contains('Edit').click()
+    cy.get(100)
+    cy.get('.todo-list ul li').last().contains('Göra mat').should('exist')
   });
 });
 });
