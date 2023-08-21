@@ -49,20 +49,17 @@ const Calendar = () => {
             if (dateDoesNotExist) {
                 updatedTasks.push({ date, tasks: [newTask] })
             }
-            console.log(updatedTasks)
+
             return updatedTasks
         });
     };
 
     const deleteTodo = (date, index) => {
-        console.log(date)
         setTasks(prevTasks => {
             let updatedTasks = prevTasks.map(task => {
                 if (task.date == date) {
                     let updatedTaskList = [...task.tasks];
-                    // updatedTaskList.splice(taskIndex, 1)
                     updatedTaskList.splice(index, 1)
-                    console.log(index)
                     return { date, tasks: updatedTaskList };
                 }
                 return task;
@@ -73,14 +70,11 @@ const Calendar = () => {
 
     const changeTodo = (date, index, task) => {
         let newTask = prompt("Please enter your task", task);
-        console.log(date)
         setTasks(prevTasks => {
             let updatedTasks = prevTasks.map(task => {
                 if (task.date == date) {
                     let updatedTaskList = [...task.tasks];
-                    // updatedTaskList.splice(taskIndex, 1)
                     updatedTaskList.splice(index, 1, newTask)
-                    console.log(index)
                     return { date, tasks: updatedTaskList };
                 }
                 return task;
