@@ -2,9 +2,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: ['main']
+    branches: ["main"]
   pull_request:
-    branches: ['main']
+    branches: ["main"]
 
 jobs:
   e2e:
@@ -21,10 +21,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+          cache: "npm"
       - run: npm ci
       #- run: npm run format
       #- run: npm run lint
       #- run: npm run build
-      - run: npm run dev 
-      - run: npm run test:run
+      - run: npm run dev & npm run test:run
