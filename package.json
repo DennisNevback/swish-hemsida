@@ -15,7 +15,8 @@
     "deasync": "^0.1.28",
     "desync": "^1.1.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.15.0"
   },
   "devDependencies": {
     "@swc/cli": "^0.1.62",
