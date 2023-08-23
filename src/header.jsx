@@ -22,7 +22,7 @@ function Header() {
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
           <div class="loggaNav">
             <img src="../images/loggaHeader.png"></img>
-            <h1>DevOps</h1>
+            <h1>SmartOps</h1>
           </div>
           <div className="menuItems">
             <li><a href="/">Services</a></li>
@@ -30,6 +30,7 @@ function Header() {
             <li><a href="/">Clients</a></li>
             <li><a href="/">About us</a></li>
             <li><a href="/">Contact us</a></li>
+            <li><a href="/kalender">Kalender</a></li>
           </div>
           <a href="javascript:void(0);" className="icon" onClick={myFunction}>
             <i class="fa fa-bars"></i>
