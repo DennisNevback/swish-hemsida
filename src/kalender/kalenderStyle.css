@@ -21,6 +21,11 @@
     background-color: rgb(19, 89, 47);
 }
 
+.calendar-todo {
+    margin-left: 10%;
+    margin-bottom: 1%;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -121,6 +126,7 @@ h2 {
 
     .calendar {
         height: min-content;
+        padding: 2% 5%;
     }
 
     .calenderTodo {
@@ -139,6 +145,7 @@ h2 {
 
     .day {
         height: 5rem;
+        font-size: 15px;
     }
 
     .empty-day {
